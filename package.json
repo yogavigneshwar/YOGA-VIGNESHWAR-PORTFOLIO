@@ -1,0 +1,9 @@
+{
+  "name": "portfolio-3d",
+  "version": "1.0.0",
+  "description": "Interactive 3D Portfolio",
+  "scripts": {
+    "start": "npx serve"
+  },
+  "dependencies": {}
+}

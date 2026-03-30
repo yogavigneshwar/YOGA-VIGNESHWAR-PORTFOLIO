@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio | Creative Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Devicon for Tech Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <!-- Three.js (Standard Version) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GLTFLoader (Standard Version) -->
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+    <div class="cursor-glow"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">YOGA VIGNESHWAR <span>PORTFOLIO</span></div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content left-side">
+                <h1 class="role-title">Java Full Stack Developer</h1>
+                <div class="tech-stack">
+                    <i class="devicon-java-plain-wordmark colored"></i>
+                    <i class="devicon-mysql-plain-wordmark colored"></i>
+                    <i class="devicon-react-original colored"></i>
+                    <i class="devicon-html5-plain-wordmark colored"></i>
+                    <i class="devicon-css3-plain-wordmark colored"></i>
+                </div>
+            </div>
+
+            <div id="threejs-canvas" class="hero-3d"></div>
+
+            <div class="hero-content right-side">
+                <h1 class="role-title">UI/UX Designer & Graphic Designer</h1>
+                <div class="design-stack">
+                    <i class="devicon-figma-plain colored"></i>
+                    <i class="devicon-photoshop-plain colored"></i>
+                    <i class="devicon-illustrator-plain colored"></i>
+                    <i class="devicon-premierepro-plain colored"></i>
+                    <i class="devicon-aftereffects-plain colored"></i>
+                </div>
+            </div>
+            
+            <div class="hero-bottom-tagline">
+                <p>I build scalable applications and design engaging user experiences.</p>
+            </div>
+        </section>
+
+        <!-- Interactive Book Section -->
+        <section id="about" class="book-section">
+            <div class="section-header">
+                <h2>My Story</h2>
+                <p>Click the right side to open the biopic</p>
+            </div>
+            
+            <div class="book-container">
+                <div class="book">
+                    <!-- Sheet 1: Cover & About Me -->
+                    <div class="page first-page" id="p1">
+                        <div class="front cover-front">
+                            <h2 class="book-title-main">THE BIOPIC</h2>
+                            <p class="book-title-sub">OF</p>
+                            <h2 class="book-author">YOGA VIGNESHWAR</h2>
+                        </div>
+                        <div class="back">
+                            <h3>About Me</h3>
+                            <p>I am a dedicated developer who blends logic with creativity to build meaningful digital products. With a passion for clean code and intuitive design, I strive to create experiences that resonate.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Sheet 2: Skills & Projects -->
+                    <div class="page" id="p2">
+                        <div class="front">
+                            <h3>My Skills</h3>
+                            <div class="skills-grid">
+                                <div>
+                                    <h4>Development</h4>
+                                    <p>Java, MySQL, React, HTML, CSS</p>
+                                </div>
+                                <div>
+                                    <h4>Design</h4>
+                                    <p>Figma, Photoshop, Illustrator, Premiere Pro, After Effects</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <h3>Featured Projects</h3>
+                            <div class="project-item">
+                                <strong>Pakka Wash Booking Website</strong>
+                                <p>A seamless booking platform for vehicle washing services.</p>
+                                <a href="https://yogavigneshwar.github.io/Pakka-Wash/" target="_blank" class="book-link">View Project →</a>
+                            </div>
+                            <div class="project-item">
+                                <strong>Skipnotad Studios Website</strong>
+                                <p>A creative studio portfolio showcasing visual excellence.</p>
+                                <a href="#" class="book-link">View Project →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sheet 3: Certificates & Contact -->
+                    <div class="page last-page" id="p3">
+                        <div class="front">
+                            <h3>Certificates</h3>
+                            <ul class="cert-list">
+                                <li>Oracle Certified Prof. Java SE</li>
+                                <li>Advanced UI/UX Specialization</li>
+                                <li>React Development Masterclass</li>
+                                <li>Graphic Design Fundamentals</li>
+                            </ul>
+                        </div>
+                        <div class="back">
+                            <h3>Let's Connect</h3>
+                            <p>I'm always open to discussing new projects or creative ideas.</p>
+                            <div class="book-contact">
+                                <p>Contact: yogavigneshwar03@gmail.com</p>
+                                <p>Let’s build something great together.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Download My Resume</a>
+                <a href="#contact" class="btn btn-secondary">Hire Me</a>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-header">
+                <h2>Let's Work Together</h2>
+                <p>Email: yogavigneshwar03@gmail.com</p>
+                <p>Let’s build something great together.</p>
+                <a href="mailto:yogavigneshwar03@gmail.com" class="btn btn-primary">Send an Email</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Designed & Built by Me.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
