@@ -42,20 +42,20 @@ loader.load(
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
         
-        // --- 1. NORMALIZATION: Force model to standard size ---
+        // --- 1. NORMALIZATION: Safer size (3 units) ---
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 5 / maxDim; // We force it to be 5 units large
+        const scale = 3 / maxDim; 
         model.scale.set(scale, scale, scale);
 
-        // --- 2. CENTERING: Move model origin to its center ---
+        // --- 2. PIVOT: Ensure rotation happens in place ---
         model.position.x = -center.x * scale;
         model.position.y = -center.y * scale;
         model.position.z = -center.z * scale;
 
-        // --- 3. CAMERA: Fixed distance for consistent visuals ---
-        camera.position.z = 10;
+        // --- 3. CAMERA: Move closer to focus on 3-unit model ---
+        camera.position.z = 8;
         
-        console.log('Model normalized and centered!');
+        console.log('Pivot point fixed & centered!');
     },
     undefined,
     function (error) {
@@ -85,8 +85,12 @@ const animate = () => {
     requestAnimationFrame(animate);
     
     if (model) {
-        model.rotation.x += (targetX - model.rotation.x) * 0.05;
-        model.rotation.y += (targetY - model.rotation.y) * 0.05;
+        // Move ONLY for right and left (Y-axis rotation)
+        model.rotation.y += (targetY - model.rotation.y) * 0.08;
+        
+        // Keep other axes completely fixed 
+        model.rotation.x = 0;
+        model.rotation.z = 0;
     }
     
     renderer.render(scene, camera);
