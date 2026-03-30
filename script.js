@@ -29,9 +29,9 @@ scene.add(pointLight);
 let model;
 const loader = new THREE.GLTFLoader();
 
-// TEMPORARY: Using a hosted robot so you can see the effect without a server
-// When you have Node.js or a real website, change this back to 'yoga.glb'
-const modelUrl = 'https://threejs.org/examples/models/gltf/RobotExpressive/RobotExpressive.glb'; 
+// Load your custom 3D model
+const modelUrl = 'yoga.glb'; 
+// Note: If you renamed your model file, make sure the name above matches exactly.
 
 loader.load(
     modelUrl,
