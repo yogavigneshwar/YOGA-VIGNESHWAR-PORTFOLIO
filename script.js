@@ -39,12 +39,26 @@ loader.load(
         model = gltf.scene;
         scene.add(model);
         const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
-        model.position.sub(center);
         
-        // Robot scale
-        model.scale.set(0.6, 0.6, 0.6); 
-        console.log('Sample model loaded successfully!');
+        // Reset position to center
+        model.position.x += (model.position.x - center.x);
+        model.position.y += (model.position.y - center.y);
+        model.position.z += (model.position.z - center.z);
+
+        // Auto-scale to fit view properly
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        
+        cameraZ *= 2.5; // Zoom out slightly for a better fit
+        camera.position.z = cameraZ;
+        
+        // Final fallback scale if model is extremely small or large
+        model.scale.set(1, 1, 1); 
+        
+        console.log('Model auto-fitted to view!');
     },
     undefined,
     function (error) {
