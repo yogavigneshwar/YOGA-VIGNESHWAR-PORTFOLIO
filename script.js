@@ -42,23 +42,20 @@ loader.load(
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
         
-        // Reset position to center
-        model.position.x += (model.position.x - center.x);
-        model.position.y += (model.position.y - center.y);
-        model.position.z += (model.position.z - center.z);
-
-        // Auto-scale to fit view properly
+        // --- 1. NORMALIZATION: Force model to standard size ---
         const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        const scale = 5 / maxDim; // We force it to be 5 units large
+        model.scale.set(scale, scale, scale);
+
+        // --- 2. CENTERING: Move model origin to its center ---
+        model.position.x = -center.x * scale;
+        model.position.y = -center.y * scale;
+        model.position.z = -center.z * scale;
+
+        // --- 3. CAMERA: Fixed distance for consistent visuals ---
+        camera.position.z = 10;
         
-        cameraZ *= 2.5; // Zoom out slightly for a better fit
-        camera.position.z = cameraZ;
-        
-        // Final fallback scale if model is extremely small or large
-        model.scale.set(1, 1, 1); 
-        
-        console.log('Model auto-fitted to view!');
+        console.log('Model normalized and centered!');
     },
     undefined,
     function (error) {
@@ -78,8 +75,9 @@ window.addEventListener('mousemove', (event) => {
     mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
     mouseY = (event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
     
-    targetX = mouseY * 1.5; // More expressive rotation
-    targetY = mouseX * 1.5;
+    // Subtle rotation limits (approx 30 degrees)
+    targetX = mouseY * 0.5; 
+    targetY = mouseX * 0.5;
 });
 
 // Animation Loop
