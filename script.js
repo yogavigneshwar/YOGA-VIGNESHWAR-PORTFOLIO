@@ -28,34 +28,33 @@ scene.add(pointLight);
 
 let model;
 const loader = new THREE.GLTFLoader();
+const modelUrl = 'yoga.glb';
 
-// Load your custom 3D model
-const modelUrl = 'yoga.glb'; 
-// Note: If you renamed your model file, make sure the name above matches exactly.
+const modelGroup = new THREE.Group();
+scene.add(modelGroup);
 
 loader.load(
     modelUrl,
     function (gltf) {
         model = gltf.scene;
-        scene.add(model);
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
         
-        // --- 1. NORMALIZATION: Safer size (3 units) ---
+        // --- 1. CENTERING INSIDE GROUP ---
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        
+        model.position.set(-center.x, -center.y, -center.z);
+        modelGroup.add(model);
+
+        // --- 2. NORMALIZATION: Safer size (3 units) ---
         const maxDim = Math.max(size.x, size.y, size.z);
         const scale = 3 / maxDim; 
-        model.scale.set(scale, scale, scale);
+        modelGroup.scale.set(scale, scale, scale);
 
-        // --- 2. PIVOT: Ensure rotation happens in place ---
-        model.position.x = -center.x * scale;
-        model.position.y = -center.y * scale;
-        model.position.z = -center.z * scale;
-
-        // --- 3. CAMERA: Move closer to focus on 3-unit model ---
+        // --- 3. CAMERA: Fixed distance ---
         camera.position.z = 8;
         
-        console.log('Pivot point fixed & centered!');
+        console.log('Pivot Group strategy implemented!');
     },
     undefined,
     function (error) {
@@ -84,13 +83,13 @@ window.addEventListener('mousemove', (event) => {
 const animate = () => {
     requestAnimationFrame(animate);
     
-    if (model) {
-        // Move ONLY for right and left (Y-axis rotation)
-        model.rotation.y += (targetY - model.rotation.y) * 0.08;
+    if (modelGroup) {
+        // Rotate the PARENT GROUP for perfect centering
+        modelGroup.rotation.y += (targetY - modelGroup.rotation.y) * 0.08;
         
-        // Keep other axes completely fixed 
-        model.rotation.x = 0;
-        model.rotation.z = 0;
+        // Lock other axes
+        modelGroup.rotation.x = 0;
+        modelGroup.rotation.z = 0;
     }
     
     renderer.render(scene, camera);
