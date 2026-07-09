@@ -138,12 +138,11 @@ nav a:hover {
 
 .hero-bottom-tagline {
     position: absolute;
-    bottom: 0;
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     text-align: center;
-    padding-bottom: 2rem;
     z-index: 5;
 }
 
@@ -153,6 +152,71 @@ nav a:hover {
     max-width: 600px;
     margin: 0 auto;
     letter-spacing: 0.5px;
+}
+
+/* AI Assisted Development Section */
+.ai-dev-section {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.ai-dev-section h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    font-family: var(--font-heading);
+}
+
+.ai-dev-stack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.ai-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.ai-item img, .ai-item svg {
+    width: 2.2rem;
+    height: 2.2rem;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.ai-item svg {
+    display: block;
+}
+
+.ai-item span {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.ai-item:hover {
+    transform: translateY(-5px);
+}
+
+.ai-item:hover img, .ai-item:hover svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.4));
+}
+
+.ai-item:hover span {
+    color: var(--text-color);
 }
 
 .tagline {
